@@ -1,6 +1,6 @@
 class TopGridTriggers
 	
-	constructor:->
+	constructor:( name )->
 		@base_url = "/refinery/#{name}"
 		@params = [ 
 			"app_dialog=true",
@@ -23,7 +23,7 @@ class TopGridTriggers
 		$ ".id select".change @on_select_change()
 		$ ".new_fields select".change @on_select_change()
 	
-	on_select_change:(e)->
+	on_select_change:( e )->
 		fields = []
 		new_fields = []
 		this_src_id = $ this.attr "id".split "_"
@@ -34,11 +34,11 @@ class TopGridTriggers
 		pos = $ "#position_#{i} select".val()
 		if item.fields
 				for key, value of item.fields
-					do (key, value) ->
+					do ( key, value ) ->
 						fields.push $ "##{key}_#{i}".text().trim()
 		if item.new_fields
 				for key, value of item.new_fields
-					do (key, value) ->
+					do ( key, value ) ->
 						new_fields.push $ "##{key}_#{i} select".val()
 		
 		top_ten_grid.add( src_id, src_relationship_id, pos, fields, new_fields )
@@ -70,11 +70,11 @@ class TopGridTriggers
 		$ "body".css "overflow", "auto"
 		$ "#modal_back".remove()
 
-	format_url:(src_relationship_id)->
+	format_url:( src_relationship_id )->
 		src_relationship_id = src_relationship_id || ""
 		url = "#{@base_url}?#{@params.join '&'}"
 		return url.replace ":src_relationship_id", cat_id			
 
 
-a = new TopGridTriggers
+a = new TopGridTriggers 'lol'
 a.set()

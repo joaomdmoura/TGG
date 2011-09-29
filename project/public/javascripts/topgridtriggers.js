@@ -1,7 +1,7 @@
 (function() {
   var TopGridTriggers, a;
   TopGridTriggers = (function() {
-    function TopGridTriggers() {
+    function TopGridTriggers(name) {
       this.base_url = "/refinery/" + name;
       this.params = ["app_dialog=true", "dialog=true", "places_select=true", "src_id=:cat_id"];
       this.modal_div_params = ["id='modal_back'", "class='ui-widget-overlay'", "style='z-index: 1001; width: 1680px; height: 1337px;'"];
@@ -84,6 +84,6 @@
     };
     return TopGridTriggers;
   })();
-  a = new TopGridTriggers;
+  a = new TopGridTriggers('lol');
   a.set();
 }).call(this);

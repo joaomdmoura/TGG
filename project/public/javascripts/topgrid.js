@@ -1,5 +1,5 @@
 (function() {
-  var TopGrid, a;
+  var TopGrid, top_ten_grid;
   TopGrid = (function() {
     function TopGrid(name, size) {
       var num, _ref, _ref2;
@@ -52,8 +52,8 @@
     };
     TopGrid.prototype.remove = function(src_id) {
       var from, index, item;
-      item = this.find_by_src_id(id);
-      index = this.find_index_by_src_id(id);
+      item = this.find_by_src_id(src_id);
+      index = this.find_index_by_src_id(src_id);
       from = item.pos;
       while (from < this.data.length) {
         this.data[from++].pos--;
@@ -164,8 +164,8 @@
     };
     return TopGrid;
   })();
-  a = new TopGrid('lol', 10);
-  a.add(1, 1, 1, {
+  top_ten_grid = new TopGrid('lol', 10);
+  top_ten_grid.add(1, 1, 1, {
     'title': 'lol'
   }, {
     'color': 'black',
