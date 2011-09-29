@@ -1,0 +1,20 @@
+%section#records
+	
+	- if params[:select] != "true"
+	
+	.field
+		= label_tag :%SRC_RELATIONSHIP%
+		= collection_select(:sub_src_relationsip_id,
+		:%SRC_RELATIONSHIP%_id, 
+		%SRC_RELATIONSHIP.C%.all, 
+		:id, :%TITLE_FIELD%, 
+		{ :prompt => 'ALL', 
+		:selected => params[:%SRC_RELATIONSHIP%] })
+	
+	- end
+
+	= render :partial => 'records',
+	:locals => { :%SRC_RELATIONSHIP% => params[:%SRC_RELATIONSHIP%] }
+
+= render :partial => '/shared/admin/make_sortable',
+	:locals => { :tree => false } if !searching? and Admin::%NAME.P%Controller.sortable? and %NAME.C%.count > 1 

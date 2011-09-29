@@ -5,7 +5,7 @@ class TopGridTriggers
 		@params = [ 
 			"app_dialog=true",
 			"dialog=true",
-			"places_select=true",
+			"select=true",
 			"src_id=:cat_id"
 		]		
 		@modal_div_params = [
@@ -41,7 +41,7 @@ class TopGridTriggers
 					do ( key, value ) ->
 						new_fields.push $ "##{key}_#{i} select".val()
 		
-		top_ten_grid.add( src_id, src_relationship_id, pos, fields, new_fields )
+		top_grid.add( src_id, src_relationship_id, pos, fields, new_fields )
 		
 	on_remove_click:->
 		pos = $ this.attr "id".split "_"
@@ -55,7 +55,7 @@ class TopGridTriggers
 		$ this.find ".search_btn".attr "style", "background-color : #22A7F2"
 
 	on_search_opts_click:->
-		src_relationship_id = $ "sub_src_relationsip_id".val()
+		src_relationship_id = $ "#sub_src_relationsip_id".val()
 		url = @format_url src_relationship_id
 		console.log url
 		$ "#dialog_iframe".hide().attr "src", url.load ->

@@ -1,0 +1,39 @@
+- if params[:select] == "true"
+
+  %li{:class => "clearfix record #{cycle('on', 'on-hover')}", :id => "article_#{%NAME%.id}"}
+
+- else
+
+  %li{:class="clearfix record #{cycle('on', 'on-hover')}", :id => dom_id(%NAME%)}
+
+- end
+
+# LOOP FIELDS OF NAME
+%span.%FIELD1%
+  = highlight.%FIELD1%
+
+%span.actions
+  - if params[:select] == "true"
+  
+    %input{:class => "wymupdate button search_btn select",:id => %NAME%.id, :style => "margin-top:5px;", :type => "button", :value => "Select"}
+  
+  - else
+  
+    = link_to refinery_icon_tag("application_go.png"), 
+      %NAME%_path(%NAME%),
+      :title => t('.view_live_html'),
+      :target => "_blank"
+    
+    = link_to refinery_icon_tag("application_edit.png"),
+      edit_admin_%NAME%_path(%NAME%),
+      :title => t('.edit')
+
+    = link_to refinery_icon_tag("delete.png"), 
+      admin_%NAME%_path(%NAME%),
+      :class => "cancel confirm-delete",
+      :title => t('.delete'),
+      :confirm => t('message', :scope => 'shared.admin.delete', 
+      :title => %NAME%.color),
+      :method => :delete
+
+  - end

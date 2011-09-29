@@ -1,0 +1,21 @@
+nb:
+  plugins:
+    highlights:
+      title: Highlights
+  admin:
+    highlights:
+      actions:
+        create_new: Lag en ny Highlight
+        reorder: Endre rekkefølgen på Highlights
+        reorder_done: Ferdig å endre rekkefølgen Highlights
+      records:
+        title: Highlights
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Highlights enda. Klikk på "Lag en ny Highlight" for å legge til din første highlight.
+      highlight:
+        view_live_html: Vis hvordan denne highlight ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne highlight
+        delete: Fjern denne highlight permanent
+  highlights:
+    show:
+      other: Andre Highlights

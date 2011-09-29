@@ -1,0 +1,25 @@
+en:
+  shared:
+    admin:
+      image_picker:
+        image: image
+  plugins:
+    highlights:
+      title: Highlights
+  admin:
+    highlights:
+      actions:
+        create_new: Add New Highlight
+        reorder: Reorder Highlights
+        reorder_done: Done Reordering Highlights
+      records:
+        title: Highlights
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no Highlights yet. Click "Add New Highlight" to add your first highlight.
+      highlight:
+        view_live_html: View this highlight live <br/><em>(opens in a new window)</em>
+        edit: Edit this highlight
+        delete: Remove this highlight forever
+  highlights:
+    show:
+      other: Other Highlights

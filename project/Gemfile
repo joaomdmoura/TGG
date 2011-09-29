@@ -6,6 +6,7 @@ source 'http://rubygems.org'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '~> 0.2.11'
+gem 'haml'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -60,3 +61,4 @@ gem 'refinerycms-i18n',         '~> 1.0.0'
 
 gem 'refinerycms-articles', '1.0', :path => 'vendor/engines'
 gem 'refinerycms-categories', '1.0', :path => 'vendor/engines'
+gem 'refinerycms-highlights', '1.0', :path => 'vendor/engines'

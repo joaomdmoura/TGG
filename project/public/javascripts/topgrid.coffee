@@ -110,5 +110,5 @@ class TopGrid
 			src_relationship_id: null,
 		}
 
-top_ten_grid = new TopGrid 'lol', 10
-top_ten_grid.add 1, 1, 1, {'title' : 'lol'}, {'color': 'black', 'align': 'right'}, false
+# top_grid = new TopGrid 'lol', 10
+# top_grid.add 1, 1, 1, {'title' : 'lol'}, {'color': 'black', 'align': 'right'}, false

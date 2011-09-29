@@ -1,0 +1,171 @@
+= javascript_include_tag 'jquery'
+= javascript_include_tag '%NAME%_records'
+= javascript_include_tag 'topgrid'
+= javascript_include_tag 'topgridtriggers'
+
+%script{:type =>"text/javascript"}
+  var top_grid = new TopGrid( "%NAME%", %SIZE% );
+
+  $(document).ready(function()
+  {
+    top_grid.render();
+    
+    $('.select').click(function()
+      {
+      type_id_val = $('#modal_order', parent.document.body).attr("type_id");
+
+      info = type_id_val.split('_');
+      new_id = $(this).parent(".actions").parent("li").attr("id");
+      new_id = new_id.split("_");
+
+      title = $(this).parent(".actions").parent("li").find(".title").html().trim();
+      position = parseInt(info[1]);
+      id = parseInt(new_id[1]);
+      color = "branco"
+      align = "direita"
+
+      window.parent.top_ten_grid.add( id, <%= "'#{params[:category_id]}'" %>, position, color, align, title );
+
+      $("#modal_order", parent.document.body).fadeOut(500);
+      $("#modal_back", parent.document.body).remove();    
+      $("body", parent.document.body).css("overflow", "auto !important");
+      })
+  })
+</script>
+<% if params[:places_select] == "true" %>
+<% if searching? %>
+  <h2><%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
+<% end %>
+<% if @highlights.any? %>
+  <div class='pagination_container'>
+    <%= render :partial => 'highlights' %>
+  </div>
+<% else %>
+  <p>
+    <% unless searching? %>
+      <strong>
+        <%= t('.no_items_yet') %>
+      </strong>
+    <% else %>
+      <%= t('no_results', :scope => 'shared.admin.search') %>
+    <% end %>
+  </p>
+<% end %>
+<% else %>
+<section id="records" style="width:100%;float:none !important;">
+  <ul id='sortable_list'>
+    <li class='clearfix record <%= cycle("on", "on-hover") %>' id="top_bar" style='border-width:1px;border-style: solid;border-color: #ccc;'>
+      <span class='id'>
+        <b>Ordenação</b>
+      </span>
+      <span class='title'>
+        <b>Título</b>
+      </span>
+      <span class='color'>
+        <b>Cor</b>
+        <span class="preview">&nbsp;</span>
+      </span>
+      <span class='align'>
+        <b>Alinhamento</b>
+        <span class="preview">&nbsp;</span>
+      </span>
+      <span class='procurar'>
+        <b>Procurar</b>
+      </span>
+      <span class='actions' style='text-align:center;padding-top:5px;'>
+        <b>Remove</b>
+      </span>
+    </li>
+
+   <%
+   index = 0
+   while index < 5 do
+    item = @highlights[index]
+    index += 1
+  select_id = "select_" + index.to_s + "_" + params[:category].to_s
+  hidden_id = "hidden_" + index.to_s
+  select_color = "color_" + index.to_s + "_" + params[:category].to_s
+  select_align = "align_" + index.to_s + "_" + params[:category].to_s
+    
+  # DEFINING BLANK VALUES
+  value = index
+  color = "---"
+  align = "---"
+  title = "vazio"
+  
+
+  if item
+    # DEFINING NEW VALUES
+    value = item.article_id
+    category_id = item.category_id
+    top = item.position
+    title = item.title  
+    color = item.color
+    align = item.align
+    # color = '<span class="color" id="' + index.to_s + '"><select id="color_' + index.to_s + '_' + params[:category_id].to_s + '_" name="color_' + index.to_s + '_' + params[:category_id].to_s + '[]"><option value="branco">branco</option><option value="preto">preto</option></select></span>';
+    # align = '<span class="align" id="align_' + index.to_s + '"><select id="align_' + index.to_s + '_' + params[:category_id].to_s + '_" name="align_' + index.to_s + '_' + params[:category_id].to_s + '[]"><option value="esquerda">esquerda</option><option value="direita">direita</option></select></span>';
+  end
+  %>
+  <script type="text/javascript">
+    if (<%= "'#{title}'" %>  != "vazio" )
+    {
+      top_ten_grid.add( <%= "'#{value}'" %>, <%= "'#{params[:category]}'" %>, <%= "'#{top}'" %>, <%= "'#{color}'" %>, <%= "'#{align}'" %>, <%= "'#{title}'" %>, true);
+    }
+  </script>
+    <li class='clearfix record <%= cycle("on", "on-hover") %>' id="row_<%= index %>">
+      <span class="id" id="position_<%= index %>">
+    
+    <form action="/refinery/highlights/order/<%= params[:category] %>" id="form_<%= index %>" method="GET" >
+
+          <%= select select_id, nil, options_for_select(['1', '2', '3', '4', '5'], :selected => "#{index}" ) -%>
+
+      <%= hidden_field_tag  hidden_id, value %>
+
+        </form>
+
+      </span>
+
+      <span class='title' id="title_<%= index %>">
+        <b><i><%= title %></i></b>
+      </span>
+
+      <span class='color' id="color_<%= index %>">
+    <%= select select_color, nil, options_for_select(['branco', 'preto'], :selected => "#{color}" ) -%>
+      </span>
+
+      <span class='align' id="align_<%= index %>">
+    <%= select select_align, nil, options_for_select(['esquerda', 'direita'], :selected => "#{align}" ) -%>
+      </span>
+
+      <span class='procurar' id="search_<%= index %>">
+
+        <input class="wymupdate button procurar_btn" search_id="id_<%= index %>" id="submit_button" type="button" value="Procurar">
+
+
+      </span>
+
+  <span class='actions' style="text-align:center;<%= (item)? "" : "display:none;" %>" >
+
+        <a class="cancel confirm-delete remove_slot" style="float:none;cursor:pointer;" id="action_<%= index %>" >
+  
+  <img alt="Delete" height="16" src="/images/refinery/icons/delete.png" width="16">
+  
+  </a>
+
+      </span>
+
+    </li>
+
+  <% end %>
+  </ul>
+  </section>
+<div id="modal_order" style="outline-width: 0px; outline-style: initial; outline-color: initial; height: auto; width: 300px; top: 222px; left: 404px; z-index: 1002; border-top-left-radius: 6px 6px; border-top-right-radius: 6px 6px; border-bottom-left-radius: 6px 6px; border-bottom-right-radius: 6px 6px; " class="ui-dialog ui-widget ui-widget-content ui-corner-all  ui-draggable" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-dialog_iframe">
+    <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="border-top-left-radius: 1px 1px; border-top-right-radius: 1px 1px; ">
+      <span class="ui-dialog-title" id="ui-dialog-title-dialog_iframe">TOP 10</span>
+      <a href="#" id="close_modal" class="ui-dialog-titlebar-close ui-corner-all" role="button">
+        <span class="ui-icon ui-icon-closethick">close</span>
+      </a>
+    </div>
+    <iframe id="dialog_iframe" name="dialog_iframe" frameborder="0" marginheight="0" marginwidth="0" border="0" style="border-top-left-radius: 8px 8px; border-top-right-radius: 8px 8px; border-bottom-left-radius: 8px 8px; border-bottom-right-radius: 8px 8px; width: auto; min-height: 0px; height: 365px !important; " class="ui-dialog-content ui-widget-content" src="/refinery/highlights?app_dialog=true&amp;dialog=true&amp;places_select=true&amp;category_id=<%= params[:category] %>"></iframe>
+</div>
+<% end %>

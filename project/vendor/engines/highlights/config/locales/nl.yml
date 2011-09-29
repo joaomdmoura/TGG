@@ -1,0 +1,21 @@
+nl:
+  plugins:
+    highlights:
+      title: Highlights
+  admin:
+    highlights:
+      actions:
+        create_new: Maak een nieuwe Highlight
+        reorder: Wijzig de volgorde van de Highlights
+        reorder_done: Klaar met het wijzingen van de volgorde van de Highlights
+      records:
+        title: Highlights
+        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+        no_items_yet: Er zijn nog geen Highlights. Druk op 'Maak een nieuwe Highlight' om de eerste aan te maken.
+      highlight:
+        view_live_html: Bekijk deze highlight op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze highlight
+        delete: Verwijder deze highlight voor eeuwig
+  highlights:
+    show:
+      other: Andere Highlights

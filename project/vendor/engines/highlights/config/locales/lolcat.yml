@@ -1,0 +1,25 @@
+lolcat:
+  shared:
+    admin:
+      image_picker:
+        image: IMAGE
+  plugins:
+    highlights:
+      title: Highlights
+  admin:
+    highlights:
+      actions:
+        create_new: CREATE NEW Highlight
+        reorder: REORDR Highlights
+        reorder_done: DUN REORDERIN Highlights
+      records:
+        title: Highlights
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Highlights YET. CLICK "CREATE NEW Highlight" 2 ADD UR FURST highlight.
+      highlight:
+        view_live_html: VIEW DIS highlight LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS highlight
+        delete: REMOOV DIS highlight FOREVR
+  highlights:
+    show:
+      other: OTHR Highlights

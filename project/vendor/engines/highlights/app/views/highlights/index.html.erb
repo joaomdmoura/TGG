@@ -1,0 +1,11 @@
+<% content_for :body_content_left do %>
+  <ul id="highlights">
+    <% @highlights.each do |highlight| %>
+      <li>
+        <%= link_to highlight.color, highlight_path(highlight) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>
