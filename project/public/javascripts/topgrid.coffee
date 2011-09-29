@@ -40,8 +40,8 @@ class TopGrid
 		@save src_relationship_id if !skip_save
 	
 	remove:( src_id )->
-		item = @find_by_src_id id
-		index = @find_index_by_src_id id
+		item = @find_by_src_id src_id
+		index = @find_index_by_src_id src_id
 		from = item.pos
 		@data[ from++ ].pos-- while from < @data.length
 		@data.splice index, 1
@@ -110,5 +110,5 @@ class TopGrid
 			src_relationship_id: null,
 		}
 
-a = new TopGrid 'lol', 10
-a.add 1, 1, 1, {'title' : 'lol'}, {'color': 'black', 'align': 'right'}, false
+top_ten_grid = new TopGrid 'lol', 10
+top_ten_grid.add 1, 1, 1, {'title' : 'lol'}, {'color': 'black', 'align': 'right'}, false
